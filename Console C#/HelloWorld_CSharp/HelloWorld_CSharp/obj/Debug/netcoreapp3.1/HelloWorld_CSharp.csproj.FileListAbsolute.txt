@@ -1,0 +1,13 @@
+C:\Users\jalf\Desktop\C# Projects\Console C#\HelloWorld_CSharp\HelloWorld_CSharp\bin\Debug\netcoreapp3.1\HelloWorld_CSharp.exe
+C:\Users\jalf\Desktop\C# Projects\Console C#\HelloWorld_CSharp\HelloWorld_CSharp\bin\Debug\netcoreapp3.1\HelloWorld_CSharp.deps.json
+C:\Users\jalf\Desktop\C# Projects\Console C#\HelloWorld_CSharp\HelloWorld_CSharp\bin\Debug\netcoreapp3.1\HelloWorld_CSharp.runtimeconfig.json
+C:\Users\jalf\Desktop\C# Projects\Console C#\HelloWorld_CSharp\HelloWorld_CSharp\bin\Debug\netcoreapp3.1\HelloWorld_CSharp.runtimeconfig.dev.json
+C:\Users\jalf\Desktop\C# Projects\Console C#\HelloWorld_CSharp\HelloWorld_CSharp\bin\Debug\netcoreapp3.1\HelloWorld_CSharp.dll
+C:\Users\jalf\Desktop\C# Projects\Console C#\HelloWorld_CSharp\HelloWorld_CSharp\bin\Debug\netcoreapp3.1\HelloWorld_CSharp.pdb
+C:\Users\jalf\Desktop\C# Projects\Console C#\HelloWorld_CSharp\HelloWorld_CSharp\obj\Debug\netcoreapp3.1\HelloWorld_CSharp.csprojAssemblyReference.cache
+C:\Users\jalf\Desktop\C# Projects\Console C#\HelloWorld_CSharp\HelloWorld_CSharp\obj\Debug\netcoreapp3.1\HelloWorld_CSharp.AssemblyInfoInputs.cache
+C:\Users\jalf\Desktop\C# Projects\Console C#\HelloWorld_CSharp\HelloWorld_CSharp\obj\Debug\netcoreapp3.1\HelloWorld_CSharp.AssemblyInfo.cs
+C:\Users\jalf\Desktop\C# Projects\Console C#\HelloWorld_CSharp\HelloWorld_CSharp\obj\Debug\netcoreapp3.1\HelloWorld_CSharp.csproj.CoreCompileInputs.cache
+C:\Users\jalf\Desktop\C# Projects\Console C#\HelloWorld_CSharp\HelloWorld_CSharp\obj\Debug\netcoreapp3.1\HelloWorld_CSharp.dll
+C:\Users\jalf\Desktop\C# Projects\Console C#\HelloWorld_CSharp\HelloWorld_CSharp\obj\Debug\netcoreapp3.1\HelloWorld_CSharp.pdb
+C:\Users\jalf\Desktop\C# Projects\Console C#\HelloWorld_CSharp\HelloWorld_CSharp\obj\Debug\netcoreapp3.1\HelloWorld_CSharp.genruntimeconfig.cache

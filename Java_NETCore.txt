@@ -1,0 +1,8 @@
+
+Tecnologias de porgramacion:
+
+Java SE 6 -> JRE(VM) + Librerias API Clases(Default dependencias JAR) + Spring Boot Framework (JAR Extension)
+
+Nota: java SE es analogo a un Java Framework en si mismo, similar a como se hace llamar .NET un framework base. (Ahora CORE abierto a otras plataformas S.O)
+
+.NET Framework -> CLR (vm) + Librerias API Clases (Default dependencias DLL) + ASP.NET MVC( DLL Extension)
