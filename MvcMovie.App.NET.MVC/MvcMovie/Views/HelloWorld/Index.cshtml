@@ -1,0 +1,14 @@
+﻿@{
+    <!-- No es requerida de manera explicta. Si se colocar valor NULL entonces ignora la plantilla base-->
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@{
+    <!-- variable que aparece en plantilla de diseño. Cuando se invoque esta vista la variable toma el valor-->
+    ViewBag.Title = "Movie List";
+}
+
+<h2>My @ViewBag.Title</h2>
+
+<p>Hello from our View Template!</p>

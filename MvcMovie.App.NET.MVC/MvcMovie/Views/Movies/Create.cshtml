@@ -1,0 +1,86 @@
+﻿<!-- Cuando se pasa un solo objeto a la vista del tipo de dato (Movies este caso)-->
+<!-- Declaracion de tipo para persistencia (Bind) con controlador -->
+<!-- [POST] Este formulario modifca estado de app -->
+@model MvcMovie.Models.Movie
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+<!-- formulario con URL que refiere a recurso Create con [Method POST]: Creacion de Movie-->
+<!-- [beginForm] es unn form por directiva que tiene como URL la misma vista donde el reside embebido con metodo POST[Creacion] [POR DEFECTO]->
+<!-- nota:Es posible modifica directiva form, indicando de manera explicita que metodo especifico va llamar un form especifico y metodo http especifico
+        Expresion de configuracion: using  (Html.BeginForm({accion},{Controlador},{Metodo HTTP}),
+        -->
+<!-- SI ES POSIBLE MODIFICAR FORM PARA LLAMAR OTRO RECURSO DISTINTO A DONDE ESTA EMBEBIDO-->
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken() <!-- propiedad de seguridad:  antifalsificacion de solicitudes-->
+
+<div class="form-horizontal">
+    <h4>Movie</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <!-- Directivas para persistir atributos del objeto Movie, al crear objeto en controlador (LLega un objeto Movie como parametro de controlador)-->
+    <!-- Nota: Otra manera es utilizar la directiva [Html.TextBox] y enviar datos como String. En el controlador crear la instancia del Objeto MOVIE y hacer Save -->
+    <div class="form-group">
+        @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ReleaseDate, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.ReleaseDate, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ReleaseDate, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Genre, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Genre, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Genre, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Rating, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Rating, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Rating, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

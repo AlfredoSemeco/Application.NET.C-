@@ -1,0 +1,13 @@
+ASP.NET : MVC version 5
+
+[IMPORTANTE]
+
+Los controladores son responsables de proporcionar los datos u objetos necesarios para que una plantilla de vista represente una respuesta al explorador. Procedimiento recomendado: una plantilla de vista nunca debe realizar la lógica de negocios ni interactuar directamente con una base de datos. En su lugar, una plantilla de vista debería funcionar solo con los datos que le proporciona el controlador. Mantener este "la separación de preocupaciones" ayuda a mantener el código limpio, comprobable y más fácil de mantener.
+
+
+
+[Controlador actualiza a vista] con Objeto: [ViewBag], objeto admite definir cualquier atributo para luego impirmir en vista. Se comporta similar a un session de Java Servlet.
+
+[Vista ejecuta a controlador] por URL y peticiones URL/path/variables
+
+En el ejemplo anterior, usamos un objeto ViewBag para pasar datos del controlador a una vista. Más adelante en el tutorial usaremos un modelo de vista para pasar datos de un controlador a una vista. El enfoque del modelo de vista para pasar datos generalmente es mucho más recomendable que el enfoque de vista de bolsa. Para obtener más información, vea la entrada de blog vistas fuertemente tipadas de V .

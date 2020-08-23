@@ -1,0 +1,87 @@
+﻿<!-- Cuando se pasa una lista de objetos a la vista del tipo de dato (Movies este caso)-->
+@model IEnumerable<MvcMovie.Models.Movie>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+
+    @Html.ActionLink("Create New", "Create")
+
+   
+    <!-- Se modifica directiva form, indicando de manera explicita que metodo especifico va llamar un form especifico y metodo http especifico
+        Expresion de configuracion: using  (Html.BeginForm({accion},{Controlador},{Metodo HTTP}), 
+        -->
+    <!-- SI ES POSIBLE MODIFICAR FORM PARA LLAMAR OTRO RECURSO DISTINTO A DONDE ESTA EMBEBIDO-->
+    @using (Html.BeginForm("Index","Movies",FormMethod.Get))
+    {
+<p>
+
+    Genre: @Html.DropDownList("movieGenre", "All")
+    <!-- Nota: En controlador MoviesController no existe para index un llamado de index con metodo POST.
+         El formulario dispara un llamado con POST, sino existe un metodo POST entonces por defecto se llama metodo GET del index en controlador-->
+    <!--  al hacer submit en boton filter de formulario, El formulario se llama asi mismo[ Cmportamiento de BeginForm] con parametro de URL SearchString ingresada en textBox [POST]-->
+    <!-- SE AJUSTA PARAMETROS BEGINFORM PARA LLAMAR SIEMPRE EL METODO GET DE LA ACCION INDEX EXISTENTE EN CONTROLADOR MOVIES-->
+    Title: @Html.TextBox("SearchString") <br />
+    <input type="submit" value="Filter" />
+</p>
+}
+
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ReleaseDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rating)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Genre)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th></th>
+        </tr>
+
+        <!-- Recorrido de la lista-->
+        @foreach (var item in Model)
+        {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ReleaseDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Rating)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Genre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        <td>
+            <!-- LLamado a otras vistas con paso de variable ID en UR  new{id=item.ID} -->
+            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+
+        </td>
+    </tr>
+        }
+
+    </table>
+
+
+

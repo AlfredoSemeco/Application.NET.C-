@@ -1,0 +1,67 @@
+Extrapolacion Java SpringBoot Rest con .NET MVC esquema
+
+SpringBoot API REST [Extension]
+
+MODELO extrapolandolo a .NET MVC [
+
+- [Entidad] -> definciones POJO y relaciones [Ejemplo: Movie]
+
+- [Repositorios]  -> Define el Modelo DAO para una Entidad POJO [MovieRepository] posee todos los metodso CRUD (save, create, delete, find). Se inyecta donde se requiera manipular un objeto persistido en BD.Desde el repository se hace expansion de capacidades, se implementan query personalizados e implementa filtros (Search methodos de busqueda mas expecializado que un simple find nativo)
+
+] Estos componentes son homologos a un MODELO en ASP.NET MVC con Entity Framework (En java es Hibernate/JPA Framework ORM) .
+
+- [Controladores] -> Metodos HTTPS {GET, POST, PATCH, PUT, DELETE}.[MovieController] Hace de interfaz de comunicacion entre el cliente y el Modelo. La respuesta son estructura de datos JSON. Por defecto SprinBoot Implementa para cada entidad creada CRUD implicitos (extension API REST ATHEOS), sin embargo suelo implementar controller y obtener datos del modelo(EntidadRepository) y presentar respuesta (Para saltar esquema ATHEOS) y mostrar datos de una entidad y sus relacions (ATHEOS Obliga a realiar consulta por cada detalle, relacion). 
+
+Este componente es homologo a un controlador ASP.NET MVC, con la diferencia de que no retorna o encarga de retornas un recurso HTML (VISTA)
+
+- [Cliente] -> peude ser cualquier tecnologia que haga peticion a API REST (Metodos de API). 
+
+
+ASP.NET MVC
+
+[Vistas] -> representa una plantilla asociada a un controlador. El controlador puede ser basico o un controlador Entity Framework. Presentacion de datos RAZOR (cshtml). - Se pinta datos utilizando directivas propias de la tecnologia, la presentacion es HTML Clasico con CSS y JS. Es la vista quien debe pintar los datos utilizando directivas con datos que pasa el controlador cunado retorna la vista.
+
+[Controlador] -> Clases que atienden peticion http (GET y POST para patron MVC)de las distintas vistas del aplicativo ASP.NET (cshtml) con llamados URL (peticiones). 
+
+[IMPORTANTE] Nota:es requerido que las vistas sean con la tecnologia del framework ASP.NET MVC esto porque es la forma de presentar datos en la vista a retornar. 
+
+[IMPORTANTE] Nota: Los controladores en un MVC normalmente manejan clases especiales para pasar datos a la vista y las vistas puedan pintar. En Java utiliza Session objeto para pintar en JSP, en .NET utilizan ViewBag objeto para pintar en un CSHTML(tambien existe una capacida de pasar objetos (Tipso) a una vista sin necesidad de usar ViewBag en .NET, PROYECTO DE REFERENCIA TIENE LA NOTA	).
+
+[IMPORTANTE] Nota: Un controlador no DEBE de implementar logica de pintado de datos (En la practica es posible, PERO NO SE DEBE NUNCA HACER), el controlador solo Solicita datos a un MODELO (con la interfaz DAO de la entidad inyectada o instanciada en el controlador) y preparar los datos en un ViewBag o pasando a la vista por parametro. Ya la vista se encarga de pintarlos con DIRECTIVAS.
+
+Cada peticion es un recurso que atiende el controlador preparando datos para una vista a retornar especifica.
+
+Existen controladores Entity Framework ( compone la clase CONTEXT BD para manipular bd desde el controlador especfico) y controladores basico que solo preparan data y retornan vista. Los primeros tambien retornan vistas.
+
+EN VS, al crar un CONTROLADOR entity framework(a partir de una entidad POJO del MODELO), el IDE crea todos los metodos CRUD para la entidad especifica que ateiende el controlador (Metodos del controlador)  y tambn genera todas las vistas de edicion CSHTML (Con todas las directivas y presentacion de datos de entidad) , listo para trabajar la entidad. Mecanismo q agiliza y minimiza generar codigo manual.
+
+[MODELOS] -> Inetrfaces DAO que implementan toda la logica transaccional de una enidad (Contexto Class embebida en cada entidad (COnfirmar si se requiere en cada entidad) que se crea). Se crean a partir de clases MODELOS en el directorio MODELO del proyecto. Entity framework es el ORM de .net Framework. Crea la BD a partir del codigo (Entidades POJO). Los objetos se manipulan solicitandole al DAO la entidad esecifica (Esto es un objeto de la BD para obtener entidades y cada entidad posee sus metodos CRUD). En el controlador se instancia clase contexto DB (DAO, representa BD en memoria) y a partir de este objeto se obtiene entidades a manipular en un CONTROLADOR.
+
+-----------------------------------------
+
+[Creacion de Base de datos  partir del codigo]:
+
+[Spring Boot]: con JPA/HIBERNATE -> Crea la BD a partir del codigo Entidad o Se enlaza a BD si existe en servidor. Si en el modelo de datos hay un cambio spring boot no lograra persistir la bd y generara una excepcion  (aplicar cambio en BD existente par persistirloy homologue)
+
+Si no se utiliza JPA, entonces spring boot por defecto tiene capacidad de crear una BD a aprtir de un archivo (Schema.sql) en un servidor indicado en cades de conexion. Esta opcion valida con una etiquetas si crearla o conextar a partir de una ya existente(Aplica para sqlite + springboot service ODATA con SAP CAP dev ). 
+
+
+
+[ASP.NET MVC]: con Entity Framework -> Crea la BD a partir del codigo Entidad o se enlaza a BD si existe en servidor. Si existen un cambio en el modelo y  no s epersistion en la BD, el framework elimina BD y crea una nueva (tener cuidado con esta forma automatica, lo recomenable es no eliminar bd y mas si existe). Si la BD no existe, el fframework cuando se  demande un recurso que implica a la BD es que crea la BD, es decir levantar un app .NET no implica la craacion de BD en ese instante.
+
+
+SAP JAVA CAP: con Spring boot (default creacion a partir de schema.sql) entorno DEV -> Crea BD a partir de codigo entidad (Generado por CDS) o se enlaza a BD existente(manual). Si exite un cambio en el modelo, toca mnanualmente alterar BD con el cambio en codigo o viseversa para que queden homologados(profundizar este manualismo y hasta q punto es necesario para no eliminar BD automaticamente ocn datos).
+
+con CDS deploy --to HANA entorno Foundry(PRD) -> paso previo antes de levantar aplicativo, se debe de crear la BD en HANA HDI Container. Para este caso no es el aplicativo que CREA la BD, sino una persona previamente antes de depslegar app. En el aplicativo se genera un archivo de conexion HANA(credenciales) al servicio . JSON. Cunado se levanta app entonces la app se enlaza a BD existente.
+
+Si existe un cambio en el modelo de datos, toca eliminar BD y crear una nueva instancia de BD en HANA (PROCESO MANUAL DE CREACION) O homologar cambio entre codigo y BD, modificando donde se requeira segun el cambio. ( Esto se debe de validar las mejores practicas y si el proceso llega a ser tan manual). 
+
+La base de dtaos HANA es creada a partir de instruccion deploy --to Hana de CDS . CDS Crea (Compila) entidades data hdbview and hdbTable en el directorio db/src/gen formatos, ya con estas entidades se crea la BD en HANA.
+
+
+
+
+ 
+
+
+
